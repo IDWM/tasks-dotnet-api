@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "e4aa04ca-3866-4c9f-9112-465184b4efe1",
+		"name": "Tasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25678350"
+	},
+	"item": [
+		{
+			"name": "Get all tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5067/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5067",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get completed tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5067/task/complete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5067",
+					"path": [
+						"task",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a task by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5067/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5067",
+					"path": [
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"walk dog\",\r\n    \"isComplete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5067/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5067",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an existing task",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"feed fish\",\r\n    \"isComplete\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5067/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5067",
+					"path": [
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5067/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5067",
+					"path": [
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
