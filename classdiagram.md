@@ -12,11 +12,11 @@ classDiagram
     }
 
     class Program {
-        + GetCompleteTasks(DataContext db) Task<IResult>$
-        + GetTask(int id, DataContext db) Task<IResult>$
-        + CreateTask(Task task, DTask<IResult>ataContext db) Task<IResult>$
-        + UpdateTask(int id, Task inputTask, DataContext db) Task<IResult>$
-        + DeleteTask(int id, DataContext db) Task<IResult>$
+        + GetCompleteTasks(DataContext db) IResult$
+        + GetTask(int id, DataContext db) IResult$
+        + CreateTask(Task task, DTask<IResult>ataContext db) IResult$
+        + UpdateTask(int id, Task inputTask, DataContext db) IResult$
+        + DeleteTask(int id, DataContext db) IResult$
     }
 
     Program *--> "1" DataContext

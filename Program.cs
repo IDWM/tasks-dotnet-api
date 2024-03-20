@@ -16,34 +16,32 @@ tasks.MapDelete("/{id}", DeleteTask);
 
 app.Run();
 
-static async Task<IResult> GetAllTasks(DataContext db)
+static IResult GetAllTasks(DataContext db)
 {
-    return TypedResults.Ok(await db.Tasks.ToArrayAsync());
+    return TypedResults.Ok(db.Tasks.ToArray());
 }
 
-static async Task<IResult> GetCompleteTasks(DataContext db)
+static IResult GetCompleteTasks(DataContext db)
 {
-    return TypedResults.Ok(await db.Tasks.Where(t => t.IsComplete).ToListAsync());
+    return TypedResults.Ok(db.Tasks.Where(t => t.IsComplete).ToList());
 }
 
-static async Task<IResult> GetTask(int id, DataContext db)
+static IResult GetTask(int id, DataContext db)
 {
-    return await db.Tasks.FindAsync(id) is Task task
-        ? TypedResults.Ok(task)
-        : TypedResults.NotFound();
+    return db.Tasks.Find(id) is Task task ? TypedResults.Ok(task) : TypedResults.NotFound();
 }
 
-static async Task<IResult> CreateTask(Task task, DataContext db)
+static IResult CreateTask(Task task, DataContext db)
 {
     db.Tasks.Add(task);
-    await db.SaveChangesAsync();
+    db.SaveChanges();
 
     return TypedResults.Created($"/tasks/{task.Id}", task);
 }
 
-static async Task<IResult> UpdateTask(int id, Task inputTask, DataContext db)
+static IResult UpdateTask(int id, Task inputTask, DataContext db)
 {
-    var task = await db.Tasks.FindAsync(id);
+    var task = db.Tasks.Find(id);
 
     if (task is null)
         return TypedResults.NotFound();
@@ -51,17 +49,17 @@ static async Task<IResult> UpdateTask(int id, Task inputTask, DataContext db)
     task.Name = inputTask.Name;
     task.IsComplete = inputTask.IsComplete;
 
-    await db.SaveChangesAsync();
+    db.SaveChangesAsync();
 
     return TypedResults.NoContent();
 }
 
-static async Task<IResult> DeleteTask(int id, DataContext db)
+static IResult DeleteTask(int id, DataContext db)
 {
-    if (await db.Tasks.FindAsync(id) is Task task)
+    if (db.Tasks.Find(id) is Task task)
     {
         db.Tasks.Remove(task);
-        await db.SaveChangesAsync();
+        db.SaveChangesAsync();
         return TypedResults.NoContent();
     }
 
